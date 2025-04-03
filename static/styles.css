@@ -1,0 +1,71 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    text-align: center;
+    padding: 20px;
+}
+
+.container {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 50%;
+    margin: auto;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+input, button {
+    margin: 10px;
+    padding: 10px;
+    width: 80%;
+    font-size: 16px;
+}
+
+button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+/* 🚀 Loading Spinner */
+#loader {
+    display: none; /* Hidden by default */
+    margin-top: 20px;
+}
+
+#loader img {
+    width: 50px;
+}
+
+/* 🚀 Result Styling */
+.result {
+    margin-top: 20px;
+    padding: 15px;
+    background: #fff3cd;
+    border: 1px solid #ffeeba;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+.result p {
+    margin: 10px 0;
+    font-weight: bold;
+}
+
+/* 🚀 Error Message Styling */
+.error {
+    color: red;
+    font-weight: bold;
+}

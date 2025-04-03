@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Route & Vehicle Recommender</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script defer src="{{ url_for('static', filename='script.js') }}"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>🚚 Route & Vehicle Recommendation</h1>
+        <form id="routeForm" action="/" method="post">
+            <label for="start">Starting City:</label>
+            <input type="text" id="start" name="start" required>
+            
+            <label for="destination">Destination City:</label>
+            <input type="text" id="destination" name="destination" required>
+            
+            <label for="load_weight">Load Weight (kg):</label>
+            <input type="number" id="load_weight" name="load_weight" required>
+
+            <button type="submit">Find Best Route & Vehicle</button>
+        </form>
+
+        <div id="loader" style="display: none;">Loading...</div>
+        {% if error %}
+            <p style="color: red;">{{ error }}</p>
+        {% endif %}
+        {% if plot_url %}
+            <h2>Results:</h2>
+            <p><strong>Best Route:</strong> {{ best_path }}</p>
+            <p><strong>Distance:</strong> {{ total_distance }} km</p>
+            <p><strong>Recommended Vehicle:</strong> {{ best_vehicle }}</p>
+            <img src="data:image/png;base64,{{ plot_url }}" alt="Route Map">
+        {% endif %}
+    </div>
+</body>
+</html>
+
