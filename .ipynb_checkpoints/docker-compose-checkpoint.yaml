@@ -1,0 +1,8 @@
+services:
+  tsp-app:
+    build: .                      # Build Docker image from current directory
+    ports:
+      - "5000:5000"               # Map container port 5000 to host port 5000
+    volumes:
+      - .:/app                    # Mount the app source code into the container
+    restart: unless-stopped       # Restart policy for reliability

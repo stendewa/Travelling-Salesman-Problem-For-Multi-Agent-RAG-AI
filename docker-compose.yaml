@@ -1,5 +1,3 @@
-version: "3.9"
-
 services:
   tsp-app:
     build: .                      # Build Docker image from current directory
