@@ -1,1 +1,83 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Jupyter notebook checkpoints
 .ipynb_checkpoints/
+
+# Virtual environment
+venv/
+env/
+.venv/
+ENV/
+env.bak/
+*.env
+
+# Jupyter Notebook history
+.history
+
+# Python egg metadata
+*.egg-info/
+*.egg
+
+# Distribution / packaging
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+
+# PyCharm, VS Code settings
+.idea/
+.vscode/
+*.code-workspace
+
+# MyPy, PyLint, and other analysis tools
+.mypy_cache/
+.dmypy.json
+.pyre/
+.pytype/
+.pylint.d/
+
+# Jupyter Notebook output (optional)
+*.out
+*.log
+
+# Data files you don't want versioned
+*.csv
+*.tsv
+*.xlsx
+*.xls
+*.json
+*.sqlite3
+*.db
+
+# Mac system files
+.DS_Store
+
+# Windows system files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
