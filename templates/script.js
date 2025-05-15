@@ -1,27 +1,36 @@
-document.addEventListener("DOMContentLoaded", function() {
-    const form = document.getElementById("routeForm");
-    const loader = document.getElementById("loader");
+// script.js
 
-    form.addEventListener("submit", function(event) {
-        event.preventDefault(); // Prevent full page reload
-        loader.style.display = "block"; // Show loading spinner
+// Wait for page to load
+document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById("routeForm"); // Grab the form element
+    const loader = document.getElementById("loader");   // Grab loader
 
+    // Listen for form submit
+    form.addEventListener("submit", function (event) {
+        event.preventDefault(); // Stop the form from submitting normally
+        loader.style.display = "block"; // Show the loader while processing
+
+        // Gather input values from the form
         const formData = new FormData(form);
 
-        fetch("/", {
+        // Send the POST request via Fetch API
+        fetch("/compare", {
             method: "POST",
             body: formData
         })
-        .then(response => response.text())
+        .then(response => response.text()) // Read response HTML
         .then(html => {
-            document.documentElement.innerHTML = html; // Replace page content with response
+            document.open();         // Clear existing page
+            document.write(html);    // Replace with new HTML
+            document.close();        // Finish render
         })
         .catch(error => {
-            console.error("Error:", error);
-            alert("Something went wrong! Please try again.");
+            alert("An error occurred. Try again.");
+            console.error(error);
         })
         .finally(() => {
             loader.style.display = "none"; // Hide loader
         });
     });
 });
+

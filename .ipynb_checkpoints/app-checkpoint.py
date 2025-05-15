@@ -7,6 +7,7 @@ import matplotlib.pyplot as plt
 import io
 import base64
 
+
 # ✅ Initialize Flask App
 app = Flask(__name__)
 
@@ -24,7 +25,6 @@ try:
         pheromones, heuristic, edge_weights, G = aco_data  # Ensure correct unpacking
 except Exception as e:
     print(f"⚠️ Error loading ACO model: {e}")
-    pheromones, heuristic, edge_weights, G = {}, {}, {}, nx.Graph()  # Fallback empty graph
 
 # ✅ ACO Parameters
 NUM_ANTS = 10
@@ -52,7 +52,7 @@ def find_best_route(start, destination):
     if best_cost == float('inf'):
         return None, None  # No valid route found
     
-    total_distance = df.loc[(df["City of Origin"] == start) & (df["Destination City"] == destination), "Distance (km)"].sum()
+    total_distance = df.loc[(df["City of Origin"] == start) & (df["Destination City"] == destination), "Distance (km)"].unique()
     return best_path, total_distance
 
 def construct_solution(start, end):

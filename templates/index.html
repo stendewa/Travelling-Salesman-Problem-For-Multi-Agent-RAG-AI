@@ -1,39 +1,48 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Route & Vehicle Recommender</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-    <script defer src="{{ url_for('static', filename='script.js') }}"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Vehicle Recommender</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
 </head>
 <body>
-    <div class="container">
-        <h1>🚚 Route & Vehicle Recommendation</h1>
-        <form id="routeForm" action="/" method="post">
-            <label for="start">Starting City:</label>
-            <input type="text" id="start" name="start" required>
-            
-            <label for="destination">Destination City:</label>
-            <input type="text" id="destination" name="destination" required>
-            
-            <label for="load_weight">Load Weight (kg):</label>
-            <input type="number" id="load_weight" name="load_weight" required>
+  <div class="container">
+    <h1>Compare ML vs ACO Optimization</h1>
+    
+    <!-- Form for user input -->
+    <form id="routeForm">
+      <input type="text" id="start" name="start" placeholder="Start City" required />
+      <input type="text" id="end" name="end" placeholder="Destination City" required />
+      <input type="number" id="weight" name="weight" placeholder="Load Weight (kg)" required />
+      <button type="submit">Compare</button>
+    </form>
 
-            <button type="submit">Find Best Route & Vehicle</button>
-        </form>
+    <!-- Loader animation -->
+    <div id="loader" style="display:none;">⏳ Loading...</div>
 
-        <div id="loader" style="display: none;">Loading...</div>
-        {% if error %}
-            <p style="color: red;">{{ error }}</p>
-        {% endif %}
-        {% if plot_url %}
-            <h2>Results:</h2>
-            <p><strong>Best Route:</strong> {{ best_path }}</p>
-            <p><strong>Distance:</strong> {{ total_distance }} km</p>
-            <p><strong>Recommended Vehicle:</strong> {{ best_vehicle }}</p>
-            <img src="data:image/png;base64,{{ plot_url }}" alt="Route Map">
-        {% endif %}
+    <!-- Result area: updated dynamically by Flask -->
+    <div class="results">
+      <div class="card">
+        <h3>ML Model (Random Forest)</h3>
+        <img src="{{ url_for('static', filename='ml_plot.png') }}" alt="ML Plot"/>
+        <p><strong>Vehicle:</strong> {{ ml_vehicle }}</p>
+        <p><strong>Distance:</strong> {{ ml_distance }} km</p>
+        <p><strong>Model Accuracy:</strong> {{ model_accuracy }}%</p>
+      </div>
+
+      <div class="card">
+        <h3>ACO Algorithm</h3>
+        <img src="{{ url_for('static', filename='aco_plot.png') }}" alt="ACO Plot"/>
+        <p><strong>Vehicle:</strong> {{ aco_vehicle }}</p>
+        <p><strong>Distance:</strong> {{ aco_distance }} km</p>
+        <p><strong>ACO Cost:</strong> {{ aco_cost }}</p>
+      </div>
     </div>
+  </div>
+
+  <!-- Link to JS -->
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>
-
